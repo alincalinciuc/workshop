@@ -5,8 +5,7 @@
         .module('mainApp', [
             'ngResource',
             'ui.router',
-            'agGrid',
-            'permission',
+            'permission'
         ]);
 
     function config($stateProvider, $urlRouterProvider) {
@@ -40,34 +39,34 @@
     config
         .$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function run(Permission, $q, UsersFactory) {
+    function run(Permission, $q) {
 
-        Permission
-            .defineRole('users', function() {
-
-                var user = new UsersFactory();
-                var deferred = $q.defer();
-
-                user
-                    .isAuthenticated()
-                    .then(function(data) {
-
-                        if (data.isAuthenticated === true) {
-
-                            deferred.resolve();
-
-                        } else {
-
-                            deferred.reject();
-                        }
-                    });
-
-                return deferred.promise;
-            })
+        //Permission
+        //    .defineRole('users', function() {
+        //
+        //        var user = new UsersFactory();
+        //        var deferred = $q.defer();
+        //
+        //        user
+        //            .isAuthenticated()
+        //            .then(function(data) {
+        //
+        //                if (data.isAuthenticated === true) {
+        //
+        //                    deferred.resolve();
+        //
+        //                } else {
+        //
+        //                    deferred.reject();
+        //                }
+        //            });
+        //
+        //        return deferred.promise;
+        //    })
     }
 
     run
-        .$inject = ['Permission', '$q', 'UsersFactory'];
+        .$inject = ['Permission', '$q'];
 
     angular
         .module('mainApp')
