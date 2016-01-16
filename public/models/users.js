@@ -15,7 +15,6 @@
       },
 
       isAuthenticated: function() {
-
         var email = $resource('/api/authenticated');
         return email.get().$promise;
       }

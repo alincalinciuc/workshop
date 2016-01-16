@@ -26,7 +26,7 @@
             })
             .state('admin', {
                 url: "/admin",
-                templateUrl: "views/admin.html",
+                templateUrl: "public/views/admin.html",
                 controller: 'AdminCtrl',
                 data: {
                     permissions: {

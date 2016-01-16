@@ -1,10 +1,22 @@
-<section class="container">
-  <div class="login m-top-20">
-    <h1>Login to Web App</h1>
-    <form method="post" action="index.html">
-      <p><input type="text" name="login" ng-model="user.username" value="" placeholder="Username or Email"></p>
-      <p><input type="password" name="password" ng-model="user.password" value="" placeholder="Password"></p>
-      <p class="submit"><input type="button" name="commit" ng-click="user.login()" value="Login"></p>
-    </form>
+<link href="http://fonts.googleapis.com/css?family=Playfair+Display:400,900italic,900,700italic,700,400italic" rel="stylesheet" type="text/css"/>
+<form name="myForm" novalidate="" class="ccc" method="post" action="index.html">
+  <h2>Workshop Login</h2>
+  <div class="group">
+    <input type="email" name="login" ng-model="user.username" required=""/><span ng-show="myForm.email.$dirty && myForm.email.$invalid"><span ng-show="myForm.email.$error.required">
+        <p class="rr">*</p></span><span ng-show="myForm.email.$error.email">
+        <div class="colors tooltip left"><span class="tooltip__tip"></span>
+          <div class="tooltip__content">Invalid email</div>
+        </div></span></span><span class="highlight"></span><span class="line"></span>
+    <label>Username</label>
   </div>
-</section>
+  <div class="group">
+    <input type="password" name="password" ng-model="user.password" required=""/><span ng-show="myForm.user.$dirty && myForm.user.$invalid"><span ng-show="myForm.user.$error.required">
+        <p class="rr">*</p></span></span><span class="highlight"></span><span class="line"></span>
+    <label>Password</label>
+  </div>
+  <div class="button raised clickable">
+    <input type="checkbox" ng-disabled="myForm.user.$dirty && myForm.user.$invalid || myForm.email.$dirty && myForm.email.$invalid" ng-click="user.login()" class="toggle"/>
+    <div class="anim"></div><span>Login</span>
+  </div>
+</form>
+<background-content></background-content>
