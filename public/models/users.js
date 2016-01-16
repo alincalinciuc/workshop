@@ -9,15 +9,15 @@
     Users.prototype = {
 
       login: function(username, pass) {
-        var email = $resource('https://workshop-assist.herokuapp.com/auth/login',
+        var user = $resource('http://192.168.150.235:6969/auth/login',
             {}, {headers: { 'Content-Type': 'application/json'}});
-        return email.save({"username":username, "password": pass}).$promise;
+        return user.save({"username":username, "password": pass}).$promise;
       },
 
-      isAuthenticated: function() {
-        var email = $resource('https://workshop-assist.herokuapp.com/auth/authenticated',
-            {}, {headers: { 'Content-Type': 'application/json'}});
-        return email.get().$promise;
+      isAuthenticated: function(session) {
+        var authentication = $resource('http://192.168.150.235:6969/auth/authenticated',
+            {}, {headers: { 'Content-Type': 'application/json', 'Authorization': 'test', "Access-Control-Allow-Credentials": 'true'}});
+        return authentication.get().$promise;
       }
 
     };

@@ -8,7 +8,49 @@
             'permission'
         ]);
 
-    function config($stateProvider, $urlRouterProvider) {
+    // register the interceptor as a service
+    angular
+        .module('mainApp').factory('myHttpInterceptor', function($q) {
+        return {
+            // optional method
+            'request': function(config) {
+                // do something on success
+                
+                return config;
+            },
+
+            // optional method
+            'requestError': function(rejection) {
+                // do something on error
+                if (canRecover(rejection)) {
+                    return responseOrNewPromise
+                }
+                return $q.reject(rejection);
+            },
+
+            // optional method
+            'response': function(response) {
+                if (response.data.user !== undefined){
+                    var AuthToken = response.data.user.session;
+                    document.cookie="connect.sid="+AuthToken;
+                    console.log(AuthToken);
+                }
+                return response;
+            },
+
+            // optional method
+            'responseError': function(rejection) {
+                // do something on error
+                if (canRecover(rejection)) {
+                    return responseOrNewPromise
+                }
+                return $q.reject(rejection);
+            }
+        };
+    });
+
+
+    function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
         $urlRouterProvider
             .otherwise('/');
@@ -30,19 +72,20 @@
                 controller: 'AdminCtrl',
                 data: {
                     permissions: {
-                        only: ['admin', 'user']
+                        only: ['master', 'user']
                     }
                 }
             })
+        $httpProvider.interceptors.push('myHttpInterceptor');
     }
 
     config
-        .$inject = ['$stateProvider', '$urlRouterProvider'];
+        .$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 
     function run(Permission, $q, UsersFactory) {
 
         Permission
-            .defineRole('admin', function() {
+            .defineRole('master', function() {
 
                 var user = new UsersFactory();
                 var deferred = $q.defer();
