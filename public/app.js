@@ -16,12 +16,12 @@
         $stateProvider
             .state('dashboard', {
                 url: "/",
-                templateUrl: "views/dashboard.html",
-                controller: 'MainCtrl'
+                templateUrl: "public/views/dashboard.html",
+                controller: 'DashboardCtrl'
             })
             .state('login', {
                 url: "/login",
-                templateUrl: "views/login.html",
+                templateUrl: "public/views/login.html",
                 controller: 'UsersCtrl',
             })
             .state('admin', {

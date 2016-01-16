@@ -10,8 +10,8 @@
 
       login: function(username, pass) {
 
-        var email = $resource('/auth/login');
-        return email.save({'username':username, password: pass}).$promise;
+        var email = $resource('https://workshop-assist.herokuapp.com/auth/login');
+        return email.save({"username":username, "password": pass}).$promise;
       },
 
       isAuthenticated: function() {

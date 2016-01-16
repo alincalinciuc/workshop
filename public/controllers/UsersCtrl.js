@@ -2,7 +2,7 @@
 
   'use strict';
 
-  function UsersCtrl($scope, MailsFactory, UsersFactory, $state) {
+  function UsersCtrl($scope, UsersFactory, $state) {
 
     var self = this,
       user = new UsersFactory();
