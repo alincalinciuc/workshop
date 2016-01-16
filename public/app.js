@@ -5,7 +5,9 @@
         .module('mainApp', [
             'ngResource',
             'ui.router',
-            'permission'
+            'permission',
+            'agGrid',
+            'ngCookies'
         ]);
 
     function config($stateProvider, $urlRouterProvider) {
@@ -23,6 +25,10 @@
                 url: "/login",
                 templateUrl: "public/views/login.html",
                 controller: 'UsersCtrl'
+            })
+            .state('/register', {
+                controller: 'RegisterCtrl',
+                templateUrl: 'public/views/register.html'
             })
             .state('admin', {
                 url: "/admin",
