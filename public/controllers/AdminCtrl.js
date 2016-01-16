@@ -2,13 +2,19 @@
 
   'use strict';
 
-  function AdminCtrl() {
-    var self = this;
-    return (self);
+  function AdminCtrl($scope) {
+      var self = this;
+
+
+
+
+      return ($scope.AdminCtrl = self);
   }
 
   AdminCtrl
-    .$inject = [];
+    .$inject = [
+      '$scope'
+    ];
     
   angular
     .module('mainApp')
