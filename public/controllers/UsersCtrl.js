@@ -19,7 +19,7 @@
           $state.go('admin');
         });
 
-    }
+    };
 
     return ($scope.user = self);
 

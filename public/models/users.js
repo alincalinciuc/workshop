@@ -9,14 +9,14 @@
     Users.prototype = {
 
       login: function(username, pass) {
-
-        var email = $resource('https://workshop-assist.herokuapp.com/auth/login',{},  {headers: { 'Content-Type': 'application/json' }});
+        var email = $resource('https://workshop-assist.herokuapp.com/auth/login',
+            {}, {headers: { 'Content-Type': 'application/json'}});
         return email.save({"username":username, "password": pass}).$promise;
       },
 
       isAuthenticated: function() {
-
-        var email = $resource('/api/authenticated');
+        var email = $resource('https://workshop-assist.herokuapp.com/auth/authenticated',
+            {}, {headers: { 'Content-Type': 'application/json'}});
         return email.get().$promise;
       }
 
